@@ -1,7 +1,6 @@
 import React from 'react'
 import MainCarousel from '../../components/HomeCarousel/MainCarousel'
 import HomeSectionCarousel from '../../components/HomeSectionCarousel/HomeSectionCarousel'
-import { MainCarouselData } from '../../components/HomeCarousel/MainCarouselData'
 
 export const HomePage = () => {
   return (
