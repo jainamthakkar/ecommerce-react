@@ -7,12 +7,12 @@ const Footer = () => {
     <div>
       <Grid className="bg-black text-white text-center mt-10 pt-10" container>
         <Grid item xs={12} sm={6} md={3}>
-          <Typography className="pb-5" variant="h6">
+          <Typography className="pb-5 mt-5" variant="h6">
             Company
           </Typography>
 
           <div>
-            <Button className="pb-5" variant="h6" gutterBottom>
+            <Button className="pb-5 text-gray-400" variant="h6" gutterBottom>
               About
             </Button>
           </div>
@@ -42,8 +42,8 @@ const Footer = () => {
           </div>
         </Grid>
 
-        <Grid item xs={12} sm={6} md={3}>
-          <Typography className="pb-5" variant="h6">
+        <Grid item xs={12} sm={6} md={3} className="pt-15">
+          <Typography className="pb-5 mt-5" variant="h6">
             Solutions
           </Typography>
 
@@ -79,7 +79,7 @@ const Footer = () => {
         </Grid>
 
         <Grid item xs={12} sm={6} md={3}>
-          <Typography className="pb-5" variant="h6">
+          <Typography className="pb-5 mt-5" variant="h6">
             Documentation
           </Typography>
 
@@ -97,7 +97,7 @@ const Footer = () => {
         </Grid>
 
         <Grid item xs={12} sm={6} md={3}>
-          <Typography className="pb-5" variant="h6">
+          <Typography className="pb-5 mt-5" variant="h6">
             Legal
           </Typography>
 
