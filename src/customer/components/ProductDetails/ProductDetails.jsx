@@ -22,6 +22,7 @@
 import { useState } from "react";
 import { StarIcon } from "@heroicons/react/20/solid";
 import { RadioGroup } from "@headlessui/react";
+import { Rating } from "@mui/material";
 
 const product = {
   name: "Basic Tee 6-Pack",
@@ -130,109 +131,55 @@ export default function ProductDetails() {
         <section className="grid grid-cols-1 lg:grid-cols-2 px-4 pt-8 gap-x-8 gap-y-10">
           {/* Image gallery */}
           <div className="flex flex-col items-center">
-            <div className="hidden overflow-hidden rounded-lg max-w-[30rem] max-h-[35rem]">
+            <div className="overflow-hidden rounded-lg max-w-[30rem] max-h-[35rem]">
               <img
-                src={product.images[2].src}
+                src={product.images[0].src}
                 alt={product.images[0].alt}
                 className="h-full w-full object-cover object-center"
               />
             </div>
             <div className="flex flex-wrap space-x-5 justify-center">
-              {product.images.map((image) => <div className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg max-w-[5rem] max-h-[5rem] mt-4">
-                <img
-                  src={image.src}
-                  alt={image.alt}
-                  className="h-full w-full object-cover object-center"
-                />
-              </div>)}
+              {product.images.map((image) => (
+                <div className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg max-w-[5rem] max-h-[5rem] mt-4">
+                  <img
+                    src={image.src}
+                    alt={image.alt}
+                    className="h-full w-full object-cover object-center"
+                  />
+                </div>
+              ))}
             </div>
           </div>
 
           {/* Product info */}
-          <div className="mx-auto max-w-2xl px-4 pb-16 pt-10 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pb-24 lg:pt-16">
-            <div className="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
-              <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
-                {product.name}
+          <div className="lg:col-span-1 mx-auto max-w-2xl px-4 pb-16 sm:px-6 lg:max-w-7xl lg:px-8 lg:pb-24 lg:pt-16">
+            <div className="lg:col-span-2">
+              <h1 className="text-lg lg:text-xl font-semibold text-gray-900">
+                UniversalOutfit
+              </h1>
+              <h1 className="text-lg lg:text-xl text-opacity-60 text-gray-900 pt-1">
+                Casual Outfit Shirt Puff Sleeves
               </h1>
             </div>
 
             {/* Options */}
             <div className="mt-4 lg:row-span-3 lg:mt-0">
               <h2 className="sr-only">Product information</h2>
-              <p className="text-3xl tracking-tight text-gray-900">
-                {product.price}
-              </p>
-
+              <div className="flex space-x-5 items-center text-lg lg:text-xl text-gray-900 mt-6">
+                <p className="font-semibold">500/-</p>
+                <p className="line-through opacity-50">1000/-</p>
+                <p className="font-semibold text-green-600">50% off</p>
+              </div>
               {/* Reviews */}
-              <div className="mt-6">
-                <h3 className="sr-only">Reviews</h3>
-                <div className="flex items-center">
-                  <div className="flex items-center">
-                    {[0, 1, 2, 3, 4].map((rating) => (
-                      <StarIcon
-                        key={rating}
-                        className={classNames(
-                          reviews.average > rating
-                            ? "text-gray-900"
-                            : "text-gray-200",
-                          "h-5 w-5 flex-shrink-0"
-                        )}
-                        aria-hidden="true"
-                      />
-                    ))}
-                  </div>
-                  <p className="sr-only">{reviews.average} out of 5 stars</p>
-                  <a
-                    href={reviews.href}
-                    className="ml-3 text-sm font-medium text-indigo-600 hover:text-indigo-500"
-                  >
-                    {reviews.totalCount} reviews
-                  </a>
-                </div>
+              <div className="mt-6 flex items-center space-x-3">
+                <Rating name="read-only" value={4.3} readOnly></Rating>
+                <p className="opacity-50 text-sm">5034 Ratings</p>
+                <p className="ml-3 font-medium text-sm text-indigo-600 hover:text-indigo-500">298 Reviews</p>
               </div>
 
               <form className="mt-10">
-                {/* Colors */}
-                <div>
-                  <h3 className="text-sm font-medium text-gray-900">Color</h3>
-
-                  <RadioGroup
-                    value={selectedColor}
-                    onChange={setSelectedColor}
-                    className="mt-4"
-                  >
-                    <RadioGroup.Label className="sr-only">
-                      Choose a color
-                    </RadioGroup.Label>
-                    <div className="flex items-center space-x-3">
-                      {product.colors.map((color) => (
-                        <RadioGroup.Option
-                          key={color.name}
-                          value={color}
-                          className={({ active, checked }) =>
-                            classNames(
-                              color.selectedClass,
-                              active && checked ? "ring ring-offset-1" : "",
-                              !active && checked ? "ring-2" : "",
-                              "relative -m-0.5 flex cursor-pointer items-center justify-center rounded-full p-0.5 focus:outline-none"
-                            )
-                          }
-                        >
-                          <RadioGroup.Label as="span" className="sr-only">
-                            {color.name}
-                          </RadioGroup.Label>
-                          <span
-                            aria-hidden="true"
-                            className={classNames(
-                              color.class,
-                              "h-8 w-8 rounded-full border border-black border-opacity-10"
-                            )}
-                          />
-                        </RadioGroup.Option>
-                      ))}
-                    </div>
-                  </RadioGroup>
-                </div>
+                
+                
 
                 {/* Sizes */}
                 <div className="mt-10">
