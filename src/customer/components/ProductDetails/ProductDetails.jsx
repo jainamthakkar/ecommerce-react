@@ -22,7 +22,8 @@
 import { useState } from "react";
 import { StarIcon } from "@heroicons/react/20/solid";
 import { RadioGroup } from "@headlessui/react";
-import { Rating } from "@mui/material";
+import { Box, Grid, LinearProgress, Rating } from "@mui/material";
+import ProductReviewCard from "./ProductReviewCard";
 
 const product = {
   name: "Basic Tee 6-Pack",
@@ -56,14 +57,10 @@ const product = {
     { name: "Black", class: "bg-gray-900", selectedClass: "ring-gray-900" },
   ],
   sizes: [
-    { name: "XXS", inStock: false },
-    { name: "XS", inStock: true },
     { name: "S", inStock: true },
     { name: "M", inStock: true },
     { name: "L", inStock: true },
     { name: "XL", inStock: true },
-    { name: "2XL", inStock: true },
-    { name: "3XL", inStock: true },
   ],
   description:
     'The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: "Black". Need to add an extra pop of color to your outfit? Our white tee has you covered.',
@@ -87,7 +84,7 @@ export default function ProductDetails() {
   const [selectedSize, setSelectedSize] = useState(product.sizes[2]);
 
   return (
-    <div className="bg-white">
+    <div className="bg-white lg:px-20">
       <div className="pt-6">
         <nav aria-label="Breadcrumb">
           <ol
@@ -174,13 +171,12 @@ export default function ProductDetails() {
               <div className="mt-6 flex items-center space-x-3">
                 <Rating name="read-only" value={4.3} readOnly></Rating>
                 <p className="opacity-50 text-sm">5034 Ratings</p>
-                <p className="ml-3 font-medium text-sm text-indigo-600 hover:text-indigo-500">298 Reviews</p>
+                <p className="ml-3 font-medium text-sm text-indigo-600 hover:text-indigo-500">
+                  298 Reviews
+                </p>
               </div>
 
               <form className="mt-10">
-                
-                
-
                 {/* Sizes */}
                 <div className="mt-10">
                   <div className="flex items-center justify-between">
@@ -264,9 +260,9 @@ export default function ProductDetails() {
 
                 <button
                   type="submit"
-                  className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                  className="mt-10 flex w-40 items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                 >
-                  Add to bag
+                  Add to Cart
                 </button>
               </form>
             </div>
@@ -306,6 +302,107 @@ export default function ProductDetails() {
                   <p className="text-sm text-gray-600">{product.details}</p>
                 </div>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Ratings and review Section */}
+
+        <section>
+          <h1 className="pb-5 font-semibold text-lg">
+            Recent Review and Ratings
+          </h1>
+
+          <div className="flex flex-col md:flex-row border p-5">
+            <div className="flex-1 md:flex-grow md:basis-2/3 space-y-5">
+              {[1, 1, 1, 1].map((item, index) => (
+                <ProductReviewCard key={index} />
+              ))}
+            </div>
+
+            <div className="flex-1 md:flex-grow md:basis-1/3 md:ml-5 mt-5 md:mt-0">
+              <h1 className="text-xl font-semibold pb-1">Product Ratings</h1>
+
+              <div className="flex items-center space-x-3">
+                <Rating value={4.6} precision={0.5} readOnly />
+                <p className="opacity-60">2323 Ratings</p>
+              </div>
+
+              <Box mt={2} className="space-y-3">
+
+                <Grid container alignItems="center" spacing={2}>
+                  <Grid item xs={3}>
+                    <p>Excellent</p>
+                  </Grid>
+
+                  <Grid item xs={9}>
+                    <LinearProgress
+                      sx={{ bgcolor: "#d0d0d0", borderRadius: 4, height: 7 }}
+                      variant="determinate"
+                      value={60}
+                      color="success"
+                    />
+                  </Grid>
+                </Grid>
+
+                <Grid container alignItems="center" spacing={2}>
+                  <Grid item xs={3}>
+                    <p>Very Good</p>
+                  </Grid>
+
+                  <Grid item xs={9}>
+                    <LinearProgress
+                      sx={{ bgcolor: "#d0d0d0", borderRadius: 4, height: 7 }}
+                      variant="determinate"
+                      value={20}
+                      color="success"
+                    />
+                  </Grid>
+                </Grid>
+
+                <Grid container alignItems="center" spacing={2}>
+                  <Grid item xs={3}>
+                    <p>Good</p>
+                  </Grid>
+                  <Grid item xs={9}>
+                    <LinearProgress
+                      sx={{ bgcolor: "#d0d0d0", borderRadius: 4, height: 7 }}
+                      variant="determinate"
+                      value={10}
+                      color="info"
+                    />
+                  </Grid>
+                </Grid>
+
+                <Grid container alignItems="center" spacing={2}>
+                  <Grid item xs={3}>
+                    <p>Average</p>
+                  </Grid>
+                  <Grid item xs={9}>
+                    <LinearProgress
+                      sx={{ bgcolor: "#d0d0d0", borderRadius: 4, height: 7 }}
+                      variant="determinate"
+                      value={7}
+                      color="warning"
+                    />
+                  </Grid>
+                </Grid>
+
+                <Grid container alignItems="center" spacing={2}>
+                  <Grid item xs={3}>
+                    <p>Poor</p>
+                  </Grid>
+                  <Grid item xs={9}>
+                    <LinearProgress
+                      sx={{ bgcolor: "#d0d0d0", borderRadius: 4, height: 7 }}
+                      variant="determinate"
+                      value={3}
+                      color="error"
+                    />
+                  </Grid>
+                </Grid>
+
+              </Box>
             </div>
           </div>
         </section>

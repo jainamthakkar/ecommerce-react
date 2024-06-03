@@ -15,6 +15,7 @@ function App() {
         {/* <Product></Product> */}
         <ProductDetails></ProductDetails>
       </div>
+      
       <Footer/>
     </div>
   );
