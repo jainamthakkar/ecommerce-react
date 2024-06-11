@@ -3,7 +3,7 @@ import "./ProductCard.css";
 
 const ProductCard = () => {
   return (
-    <div className="productCard cursor-pointer flex flex-col items-center bg-white rounded-lg overflow-hidden w-[15rem] mx-3 transition-all mb-4">
+    <div className="productCard cursor-pointer flex flex-col items-center shadow-md bg-white rounded-lg overflow-hidden w-[15rem] mx-3 transition-all mb-4">
       <div className="h-[20rem]">
         <img
           className="object-cover object-left-top w-full h-full"
