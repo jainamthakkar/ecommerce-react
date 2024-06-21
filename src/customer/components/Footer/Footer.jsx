@@ -127,7 +127,7 @@ const Footer = () => {
             </Typography>
 
             <Typography variant="body2" component='p' align="center">
-                Made with HardWork by me.
+                Made with HardWork by Jainam.
             </Typography>
 
 
