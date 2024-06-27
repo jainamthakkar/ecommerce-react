@@ -13,11 +13,11 @@ function App() {
       <Navigation/>
       
       <div>
-        {/* <HomePage/>  */}
+        <HomePage/> 
         {/* <Product></Product> */}
         {/* <ProductDetails></ProductDetails> */}
         {/* <Cart/> */}
-        <Checkout/>
+        {/* <Checkout/> */}
       </div>
       
       <Footer/>

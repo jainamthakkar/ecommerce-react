@@ -28,7 +28,7 @@ const OrderSummery = () => {
             <div className="space-y-3 font-semibold">
               <div className="flex justify-between pt-3 text-black">
                 <span>Price </span>
-                <span>789/-</span>
+                <span>1500/-</span>
               </div>
 
               <div className="flex justify-between pt-3 text-black">
@@ -43,7 +43,7 @@ const OrderSummery = () => {
 
               <div className="flex justify-between pt-3 text-black font-bold mb-10">
                 <span>Total Amount </span>
-                <span className="text-green-600">489/-</span>
+                <span className="text-green-600">1000/-</span>
               </div>
 
               <hr />

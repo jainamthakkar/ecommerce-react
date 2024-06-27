@@ -10,20 +10,20 @@ const CartItem = () => {
         <div className="w-[5rem] h-[5rem] lg:w-[9rem] lg:h-[9rem]">
           <img
             className="w-full h-full object-cover object-top"
-            src="https://rukminim1.flixcart.com/image/612/612/l5h2xe80/kurta/x/6/n/xl-kast-tile-green-majestic-man-original-imagg4z33hu4kzpv.jpeg?q=70"
+            src="https://images.unsplash.com/photo-1592496431122-2349e0fbc666?q=80&w=912&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             alt="pr-img"
           />
         </div>
 
         <div className="space-y-1 ml-5">
-          <h3 className="font-semibold">Men's Pista color stylish Shirt</h3>
+          <h3 className="font-semibold">Product 1</h3>
           <h5 className="opacity-70">Size: L, Pista</h5>
           <h5 className="opacity-70 mt-2">
             Seller: Being Human by Salman khan
           </h5>
 
           <div className="flex space-x-5 items-center text-gray-900 pt-6">
-            <p className="font-semibold">500/-</p>
+            <p className="font-semibold">1 $/-</p>
             <p className="line-through opacity-50">1000/-</p>
             <p className="font-semibold text-green-600">50% off</p>
           </div>
