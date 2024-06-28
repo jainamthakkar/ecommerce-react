@@ -5,26 +5,27 @@ import Button from "@mui/material/Button";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+
 const HomeSectionCarousel = ({ sectionName, data }) => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const responsive = {
     0: { items: 1.3 },
     720: { items: 3.5 },
-    1024: { items: 5 },
+    1024: { items: 5 }
   };
 
-  const slidePrev = () => {
-    activeIndex == 0
-      ? setActiveIndex(items.length - 1)
-      : setActiveIndex(activeIndex - 2);
-  };
+  // const slidePrev = () => {
+  //   activeIndex == 0
+  //     ? setActiveIndex(items.length - 1)
+  //     : setActiveIndex(activeIndex - 2);
+  // };
 
-  const slideNext = () => {
-    activeIndex == items.length - 1
-      ? setActiveIndex(0)
-      : setActiveIndex(activeIndex + 2);
-  };
+  // const slideNext = () => {
+  //   activeIndex == items.length - 1
+  //     ? setActiveIndex(0)
+  //     : setActiveIndex(activeIndex + 2);
+  // };
 
   const renderNextButton = ({ isDisabled }) => {
     return (
@@ -34,7 +35,7 @@ const HomeSectionCarousel = ({ sectionName, data }) => {
           top: "45%",
           right: "0rem",
           transform: "rotate(-90deg)",
-          bgcolor: "#e8ebfa",
+          bgcolor: "#e8ebfa"
         }}
         disabled={isDisabled}
       >
