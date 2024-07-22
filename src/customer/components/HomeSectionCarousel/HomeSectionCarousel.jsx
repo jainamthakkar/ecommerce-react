@@ -35,7 +35,9 @@ const HomeSectionCarousel = ({ sectionName, data }) => {
           top: "45%",
           right: "0rem",
           transform: "rotate(-90deg)",
-          bgcolor: "#e8ebfa"
+          // bgcolor: "#e8ebfa",
+          color: "black",
+          boxShadow: 3
         }}
         disabled={isDisabled}
       >
@@ -54,7 +56,9 @@ const HomeSectionCarousel = ({ sectionName, data }) => {
           top: "45%",
           left: "0rem",
           transform: "rotate(-90deg)",
-          bgcolor: "#e8ebfa",
+          // bgcolor: "#e8ebfa",
+          color: "black",
+          boxShadow: 3
         }}
         disabled={isDisabled}
       >

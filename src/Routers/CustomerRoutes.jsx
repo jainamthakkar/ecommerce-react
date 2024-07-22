@@ -25,17 +25,10 @@ const CustomerRoutes = () => {
         <Route path="/checkout" element={<Checkout/>}></Route>
         <Route path="/account/order" element={<Order />}></Route>
         <Route path="/account/order/:orderId" element={<OrderDetails />}></Route>
-
       </Routes>
 
       <div>
         <Footer/>
-      </div>
-
-      <div>
-        {/* <Checkout/> */}
-        {/* <Order/> */}
-        {/* <OrderDetails/> */}
       </div>
     </div>
   );
