@@ -337,14 +337,13 @@ export default function Navigation() {
                 </div>
 
                 <div className="space-y-6 border-t border-gray-200 px-4 py-6">
-             
                   <Button
-                      onClick={handleOpen}
-                      className="text-sm font-medium text-gray-700 hover:text-gray-800"
-                    >
-                      Signin
-                    </Button>
-    
+                    onClick={handleOpen}
+                    className="text-sm font-medium text-gray-700 hover:text-gray-800"
+                  >
+                    Signin
+                  </Button>
+
                   <div className="flow-root">
                     <a
                       href="#"
@@ -552,23 +551,24 @@ export default function Navigation() {
                   </a>
                 </div> */}
 
-                <div>
-                  <Avatar
-                    className="text-white"
-                    onClick={handleUserClick}
-                    aria-controls={open ? "basic-menu" : undefined}
-                    aria-haspopup="true"
-                    aria-expanded={open ? "true" : undefined}
-                    // onClick={handleUserClick}
-                    sx={{
-                      bgcolor: deepPurple[500],
-                      color: "white",
-                      cursor: "pointer",
-                    }}
-                  >
-                    {/* {auth.user?.firstName[0].toUpperCase()} */}
-                  </Avatar>
-                  {/* <Button
+                {false ? (
+                  <div>
+                    <Avatar
+                      className="text-white"
+                      onClick={handleUserClick}
+                      aria-controls={open ? "basic-menu" : undefined}
+                      aria-haspopup="true"
+                      aria-expanded={open ? "true" : undefined}
+                      // onClick={handleUserClick}
+                      sx={{
+                        bgcolor: deepPurple[500],
+                        color: "white",
+                        cursor: "pointer",
+                      }}
+                    >
+                      {/* {auth.user?.firstName[0].toUpperCase()} */}
+                    </Avatar>
+                    {/* <Button
                         id="basic-button"
                         aria-controls={open ? "basic-menu" : undefined}
                         aria-haspopup="true"
@@ -577,22 +577,32 @@ export default function Navigation() {
                       >
                         Dashboard
                       </Button> */}
-                  <Menu
-                    id="basic-menu"
-                    anchorEl={anchorEl}
-                    open={openUserMenu}
-                    onClose={handleCloseUserMenu}
-                    MenuListProps={{
-                      "aria-labelledby": "basic-button",
-                    }}
+                    <Menu
+                      id="basic-menu"
+                      anchorEl={anchorEl}
+                      open={openUserMenu}
+                      onClose={handleCloseUserMenu}
+                      MenuListProps={{
+                        "aria-labelledby": "basic-button",
+                      }}
+                    >
+                      <MenuItem>Profile</MenuItem>
+
+                      <MenuItem onClick={handleMyOrderClick}>
+                        {" "}
+                        My Orders
+                      </MenuItem>
+                      <MenuItem>Logout</MenuItem>
+                    </Menu>
+                  </div>
+                ) : (
+                  <Button
+                    onClick={handleOpen}
+                    className="text-sm font-medium text-gray-700 hover:text-gray-800"
                   >
-                    <MenuItem >Profile</MenuItem>
-
-                    <MenuItem onClick={handleMyOrderClick}> My Orders</MenuItem>
-                    <MenuItem>Logout</MenuItem>
-                  </Menu>
-                </div>
-
+                    SignIn
+                  </Button>
+                )}
                 {/* Search */}
                 <div className="flex lg:ml-6">
                   <a href="#" className="p-2 text-gray-400 hover:text-gray-500">
@@ -624,8 +634,6 @@ export default function Navigation() {
       </header>
 
       <AuthModal handleClose={handleClose} open={openAuthModal} />
-
-
     </div>
   );
 }
