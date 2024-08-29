@@ -1,11 +1,20 @@
 import { Button, Grid, TextField } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { getUser, register } from "../../state/Auth/Action";
 
 const Register = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const jwt = localStorage.getItem("jwt");
+  const { auth } = useSelector((auth) => auth);
+
+  useEffect(() => {
+    if (jwt) {
+      dispatch(getUser());
+    }
+  }, [jwt, auth.jwt]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -17,8 +26,8 @@ const Register = () => {
       email: data.get("email"),
       password: data.get("password"),
     };
-
-    console.log("userData:" + userData);
+    dispatch(register(userData));
+    console.log("userData:" + userData.email);
   };
 
   return (
