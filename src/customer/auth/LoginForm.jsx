@@ -1,11 +1,13 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 import { Button, Grid, TextField } from "@mui/material";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { DisabledByDefault } from "@mui/icons-material";
+import { login } from "../../state/Auth/Action";
 
 const LoginForm = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -15,15 +17,14 @@ const LoginForm = () => {
       email: data.get("email"),
       password: data.get("password"),
     };
-
-    console.log("userData:" + userData);
+    dispatch(login(userData));
+    // console.log("userData:" + userData);
   };
 
   return (
     <div>
       <form onSubmit={handleSubmit}>
         <Grid container spacing={3}>
-
           <Grid item xs={12}>
             <TextField
               required
@@ -59,7 +60,7 @@ const LoginForm = () => {
           </Grid>
         </Grid>
       </form>
-      
+
       <div className="flex justify-center flex-col items-center">
         <div className="py-3 flex items-center">
           <p>Don't have an account? </p>
@@ -72,8 +73,8 @@ const LoginForm = () => {
           </Button>
         </div>
       </div>
-      </div>
-  )
-}
+    </div>
+  );
+};
 
-export default LoginForm
+export default LoginForm;

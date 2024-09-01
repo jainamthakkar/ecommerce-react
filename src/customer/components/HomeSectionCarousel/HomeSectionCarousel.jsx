@@ -2,9 +2,6 @@ import React, { useState } from "react";
 import AliceCarousel from "react-alice-carousel";
 import HomeSectionCard from "../HomeSectionCard/HomeSectionCard";
 import Button from "@mui/material/Button";
-import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
-import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
 const HomeSectionCarousel = ({ sectionName, data }) => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -82,7 +79,7 @@ const HomeSectionCarousel = ({ sectionName, data }) => {
       </h2>
 
       <div className="relative p-5">
-        {console.log(activeIndex, "before render")}
+        {/* {console.log(activeIndex, "before render")} */}
         {/* <AliceCarousel
           items={items}
           // disableButtonsControls
