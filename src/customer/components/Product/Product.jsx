@@ -12,7 +12,7 @@
   }
   ```
 */
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { Dialog, Disclosure, Menu, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import {
@@ -24,7 +24,10 @@ import {
 } from "@heroicons/react/20/solid";
 import ProductCard from "./ProductCard";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { mens_kurta } from "../../../data/mens_kurta";
+import { useDispatch } from "react-redux";
+import { findProducts } from "../../../state/Product/Action";
 
 const sortOptions = [
   { name: "Price: Low to High", href: "#", current: false },
@@ -94,18 +97,31 @@ export default function Product() {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
+  const params = useParams();
+  const dispatch = useDispatch();
+  const decodedQueryString = decodeURIComponent(location.search);
+  const searchParams = new URLSearchParams(decodedQueryString);
+  const colorValue = searchParams.get("color");
+  const sizeValue = searchParams.get("size");
+  const discount = searchParams.get("discount");
+  const priceValue = searchParams.get("price");
+  const sortValue = searchParams.get("sort");
+  const pageNumber = searchParams.get("page") || 1;
+  const stock = searchParams.get("stock");
 
   const handleParams = (value, sectionId) => {
     const searchParams = new URLSearchParams(location.search);
 
     let filterValues = searchParams.getAll(sectionId);
 
+    console.log("filter", filterValues);
+
     if (filterValues.length > 0 && filterValues[0].split(",").includes(value)) {
       filterValues = filterValues[0]
         .split(",")
         .filter((item) => item !== value);
 
-      if (filterValues.length == 0) {
+      if (filterValues.length === 0) {
         searchParams.delete(sectionId);
       }
     } else {
@@ -120,14 +136,46 @@ export default function Product() {
     navigate({ search: `?${query}` });
   };
 
-  const handleRadioFilterChange = (e, sectionId) =>{
+  const handleRadioFilterChange = (e, sectionId) => {
+    const searchParams = new URLSearchParams(location.search);
 
-    const searchParams = new URLSearchParams(location.search)
-
-    searchParams.set(sectionId, e.target.value)
+    searchParams.set(sectionId, e.target.value);
     const query = searchParams.toString();
-    navigate({search:`?${query}`})
-  }
+    navigate({ search: `?${query}` });
+  };
+
+  useEffect(() => {
+
+    console.log("params:", params);
+    console.log("levelThree:", params.levelThree);
+
+    const [minPrice, maxPrice] =
+      priceValue === null ? [0, 10000] : priceValue.split("-").map(Number);
+      if (params.levelThree) {
+    const data = {
+      category: params.levelThree,
+      colors: colorValue || [],
+      sizes: sizeValue || [],
+      minPrice,
+      maxPrice,
+      minDiscount: discount || 0,
+      sort: sortValue || "price_low",
+      pageNumber: pageNumber - 1,
+      pageSize: 12,
+      stock: stock,
+    };
+    dispatch(findProducts(data))
+  };
+  }, [
+    params.levelThree,
+    colorValue,
+    sizeValue,
+    discount,
+    priceValue,
+    sortValue,
+    pageNumber,
+    stock,
+  ]);
 
   return (
     <div className="bg-white">
@@ -421,7 +469,9 @@ export default function Product() {
                                   className="flex items-center"
                                 >
                                   <input
-                                  onChange={(e)=>handleRadioFilterChange(e, section.id)}
+                                    onChange={(e) =>
+                                      handleRadioFilterChange(e, section.id)
+                                    }
                                     id={`filter-${section.id}-${optionIdx}`}
                                     name={`${section.id}[]`}
                                     defaultValue={option.value}
@@ -448,15 +498,9 @@ export default function Product() {
               {/* Product grid */}
               <div className="lg:col-span-4 w-full">
                 <div className="flex justify-center flex-wrap bg-white py-5">
-                  <ProductCard></ProductCard>
-                  <ProductCard></ProductCard>
-                  <ProductCard></ProductCard>
-                  <ProductCard></ProductCard>
-                  <ProductCard></ProductCard>
-                  <ProductCard></ProductCard>
-                  <ProductCard></ProductCard>
-                  <ProductCard></ProductCard>
-                  <ProductCard></ProductCard>
+                  {mens_kurta.map((item, index) => (
+                    <ProductCard key={index} product={item} />
+                  ))}
                 </div>
               </div>
             </div>

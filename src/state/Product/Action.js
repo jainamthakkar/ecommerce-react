@@ -1,5 +1,5 @@
-import { type } from "@testing-library/user-event/dist/type";
 import { FIND_PRODUCTS_FAILURE, FIND_PRODUCTS_REQUEST, FIND_PRODUCTS_SUCCESS, FIND_PRODUCT_BY_ID_FAILURE, FIND_PRODUCT_BY_ID_REQUEST, FIND_PRODUCT_BY_ID_SUCCESS } from "./ActionType";
+import {api} from "../../Config/apiConfig";
 
 export const findProducts = (reqData) => async (dispatch) => {
   dispatch({ type: FIND_PRODUCTS_REQUEST });
@@ -17,9 +17,10 @@ export const findProducts = (reqData) => async (dispatch) => {
   } = reqData;
 
   try {
-    const { data } = api.get(
+    const { data } = await api.get(
       `/api/products/color=${colors}&size=${sizes}&minPrice=${minPrice}&maxPrice=${maxPrice}&minDiscount=${minDiscount}&category=${category}&stock=${stock}&sort=${sort}&pageNumber=${pageNumber}&pageSize=${pageSize}`
     );
+    console.log("data", data);
     dispatch({type:FIND_PRODUCTS_SUCCESS, payload:data})
   } catch (error) {
     console.error("findProducts: ", error);

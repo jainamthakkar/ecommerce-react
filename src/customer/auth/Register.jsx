@@ -8,7 +8,9 @@ const Register = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const jwt = localStorage.getItem("jwt");
-  const { auth } = useSelector(store => store);
+  console.log("register.jsx : jwt :", jwt);
+  const { auth } = useSelector((store) => store);
+  console.log("auth ", auth);
 
   useEffect(() => {
     if (jwt) {
@@ -16,15 +18,14 @@ const Register = () => {
     }
   }, [jwt, auth.jwt]);
 
-  
-  // const state = useSelector(store => store);
-  // console.log('Redux state:', state);
-  // console.log('Auth state:', auth);
+  const state = useSelector((store) => store);
+  console.log("Redux state:", state);
+  console.log("Auth state:", auth);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const data = new FormData(e.currentTarget);
-    
+
     const userData = {
       firstName: data.get("firstName"),
       lastName: data.get("lastName"),
