@@ -26,7 +26,7 @@ import ProductCard from "./ProductCard";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { mens_kurta } from "../../../data/mens_kurta";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { findProducts } from "../../../state/Product/Action";
 
 const sortOptions = [
@@ -99,8 +99,10 @@ export default function Product() {
   const navigate = useNavigate();
   const params = useParams();
   const dispatch = useDispatch();
+  const { product } = useSelector((store) => store);
   const decodedQueryString = decodeURIComponent(location.search);
   const searchParams = new URLSearchParams(decodedQueryString);
+  const minDiscount = searchParams.get("minDiscount");
   const colorValue = searchParams.get("color");
   const sizeValue = searchParams.get("size");
   const discount = searchParams.get("discount");
@@ -108,6 +110,8 @@ export default function Product() {
   const sortValue = searchParams.get("sort");
   const pageNumber = searchParams.get("page") || 1;
   const stock = searchParams.get("stock");
+
+  console.log("product", product);
 
   const handleParams = (value, sectionId) => {
     const searchParams = new URLSearchParams(location.search);
@@ -145,27 +149,26 @@ export default function Product() {
   };
 
   useEffect(() => {
-
-    console.log("params:", params);
-    console.log("levelThree:", params.levelThree);
+    // console.log("params:", params);
+    // console.log("levelThree:", params.levelThree);
 
     const [minPrice, maxPrice] =
       priceValue === null ? [0, 10000] : priceValue.split("-").map(Number);
-      if (params.levelThree) {
-    const data = {
-      category: params.levelThree,
-      colors: colorValue || [],
-      sizes: sizeValue || [],
-      minPrice,
-      maxPrice,
-      minDiscount: discount || 0,
-      sort: sortValue || "price_low",
-      pageNumber: pageNumber - 1,
-      pageSize: 12,
-      stock: stock,
-    };
-    dispatch(findProducts(data))
-  };
+    if (params.levelThree) {
+      const data = {
+        category: params.levelThree,
+        colors: colorValue || [],
+        sizes: sizeValue || [],
+        minPrice,
+        maxPrice,
+        minDiscount: minDiscount || 0,
+        sort: sortValue || "price_low",
+        pageNumber: pageNumber - 1,
+        pageSize: 12,
+        stock: stock,
+      };
+      dispatch(findProducts(data));
+    }
   }, [
     params.levelThree,
     colorValue,
@@ -498,9 +501,14 @@ export default function Product() {
               {/* Product grid */}
               <div className="lg:col-span-4 w-full">
                 <div className="flex justify-center flex-wrap bg-white py-5">
-                  {mens_kurta.map((item, index) => (
-                    <ProductCard key={index} product={item} />
-                  ))}
+                  {console.log(product.products)}
+                  {product.products?.content?.length > 0 ? (
+                    product.products.content.map((item, index) => (
+                      <ProductCard key={index} product={item} />
+                    ))
+                  ) : (
+                    <p>No products found</p>
+                  )}
                 </div>
               </div>
             </div>
