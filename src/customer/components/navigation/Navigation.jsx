@@ -152,8 +152,8 @@ const navigation = {
     },
   ],
   pages: [
+    { name: "Home", href: "/ecommerce-react" },
     { name: "Company", href: "#" },
-    { name: "Stores", href: "#" },
   ],
 };
 

@@ -28,6 +28,7 @@ import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { mens_kurta } from "../../../data/mens_kurta";
 import { useDispatch, useSelector } from "react-redux";
 import { findProducts } from "../../../state/Product/Action";
+import { Pagination } from "@mui/material";
 
 const sortOptions = [
   { name: "Price: Low to High", href: "#", current: false },
@@ -112,6 +113,14 @@ export default function Product() {
   const stock = searchParams.get("stock");
 
   console.log("product", product);
+
+  const handlePaginationChange = (e, value) => {
+    const searchParams = new URLSearchParams(location.search);
+
+    searchParams.set("page", value);
+    const query = searchParams.toString();
+    navigate({search:`?${query}`})
+  }
 
   const handleParams = (value, sectionId) => {
     const searchParams = new URLSearchParams(location.search);
@@ -499,7 +508,7 @@ export default function Product() {
                 </form>
               </div>
               {/* Product grid */}
-              <div className="lg:col-span-4 w-full">
+              <div className="md:col-span-4 w-full">
                 <div className="flex justify-center flex-wrap bg-white py-5">
                   {console.log(product.products)}
                   {product.products?.content?.length > 0 ? (
@@ -511,6 +520,12 @@ export default function Product() {
                   )}
                 </div>
               </div>
+            </div>
+          </section>
+
+          <section className="w-full px-[3.6rem]">
+            <div className="px-5 py-4 flex justify-center">
+              <Pagination count={product.products?.totalPages} variant="outlined" color="secondary" onChange={handlePaginationChange} />
             </div>
           </section>
         </main>

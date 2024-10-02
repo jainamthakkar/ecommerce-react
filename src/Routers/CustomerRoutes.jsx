@@ -10,8 +10,6 @@ import ProductDetails from "../customer/components/ProductDetails/ProductDetails
 import Checkout from "../customer/components/checkout/Checkout";
 import OrderDetails from "../customer/components/Order/OrderDetails";
 import Order from "../customer/components/Order/Order";
-import LoginForm from "../customer/auth/LoginForm";
-import Register from "../customer/auth/Register";
 
 const CustomerRoutes = () => {
   return (
